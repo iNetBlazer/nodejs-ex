@@ -10,7 +10,7 @@ app.use(morgan('combined'))
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = "mongodb://iNetBlazer:ZAQ%21xsw2CDE%23vfr4@inetblazercluster0-shard-00-00-p5eu2.mongodb.net%3A27017%2Cinetblazercluster0-shard-00-01-p5eu2.mongodb.net%3A27017%2Cinetblazercluster0-shard-00-02-p5eu2.mongodb.net%3A27017%2Ftest%3Fssl%3Dtrue%26replicaSet%3DiNetBlazerCluster0-shard-0%26authSource%3Dadmin",
+    mongoURL = "process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL",
     mongoURLLabel = "";
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
@@ -41,6 +41,7 @@ var initDb = function(callback) {
   var mongodb = require('mongodb');
   if (mongodb == null) return;
 
+  mongoURL = "mongodb://iNetBlazer:ZAQ%21xsw2CDE%23vfr4@inetblazercluster0-shard-00-00-p5eu2.mongodb.net:27017,inetblazercluster0-shard-00-01-p5eu2.mongodb.net:27017,inetblazercluster0-shard-00-02-p5eu2.mongodb.net:27017/test?ssl=true&replicaSet=iNetBlazerCluster0-shard-0&authSource=admin",
   mongodb.connect(mongoURL, function(err, conn) {
     if (err) {
       callback(err);
