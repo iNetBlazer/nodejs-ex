@@ -10,7 +10,7 @@ app.use(morgan('combined'))
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = "mongodb+srv://iNetBlazer:ZAQ!xsw2CDE#vfr4@inetblazercluster0-p5eu2.mongodb.net/test",
+    mongoURL = "mongodb://iNetBlazer:ZAQ!xsw2CDE#vfr4@inetblazercluster0-shard-00-00-p5eu2.mongodb.net:27017,inetblazercluster0-shard-00-01-p5eu2.mongodb.net:27017,inetblazercluster0-shard-00-02-p5eu2.mongodb.net:27017/test?ssl=true&replicaSet=iNetBlazerCluster0-shard-0&authSource=admin",
     mongoURLLabel = "";
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
